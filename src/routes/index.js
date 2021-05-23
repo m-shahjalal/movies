@@ -1,7 +1,7 @@
 const formRouter = require('./form');
 const infoRouter = require('./info');
 
-module.exports = (app) => {
-	app.use('/form', formRouter);
-	app.use('/info', infoRouter);
+module.exports = {
+	info: infoRouter,
+	form: formRouter,
 };

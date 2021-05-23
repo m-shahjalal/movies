@@ -9,15 +9,12 @@ const routes = require('./routes');
 const app = express();
 
 middleware(app);
-routes(app);
+app.use('/info', routes.info);
+app.use('/form', routes.form);
+app.get('*', (req, res) => {
+	res.sendFile(
+		path.resolve(__dirname, '../', 'client', 'build', 'index.html')
+	);
+});
+
 database(app);
-
-// Serve static assets if in production
-if (process.env.NODE_ENV === 'production') {
-	// Set static folder
-	app.use(express.static('client/build'));
-
-	app.get('*', (req, res) => {
-		res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-	});
-}
