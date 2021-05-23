@@ -1,0 +1,20 @@
+.nav {
+	@apply flex justify-between block h-14 bg-gray-200 shadow-sm;
+	width: 100%;
+}
+.list {
+	@apply block text-right sm:m-0 flex h-screen overflow-y-hidden;
+}
+
+.linkItem {
+	@apply p-4 p-1 sm:my-0 rounded mx-2 hover:text-blue-500 h-8;
+}
+
+.text {
+	@apply text-3xl ml-2;
+	margin-top: -4px;
+}
+
+.logo {
+	@apply font-extrabold mx-4 pt-2 text-xl hover:text-blue-500;
+}

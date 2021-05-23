@@ -1,0 +1,21 @@
+.home {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 90vh;
+	flex-direction: column;
+}
+.lead {
+	@apply text-5xl text-gray-800 text-center px-4;
+}
+
+.welcome {
+	@apply text-blue-500;
+}
+
+.para {
+	padding: 3rem 2rem 0 3rem;
+	text-align: center;
+	font-size: 1.2rem;
+	@apply text-gray-800;
+}
