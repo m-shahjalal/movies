@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import styles from './info.module.css';
 
-const Pagination = ({ totalPage, urlGenerator }) => {
+const Pagination = ({ totalPage, setUrl }) => {
 	const [error, setError] = useState(null);
 	const [isEditable, setIsEditable] = useState(false);
 	const [inputValue, setInputValue] = useState('');
 	const [current, setCurrent] = useState(1);
 
-	useEffect(() => urlGenerator(current), [current, urlGenerator]);
+	useEffect(() => {
+		setUrl(`limit=10&page=${current}`);
+	}, [current, setUrl]);
 
 	const pageChangeHandler = (e) => {
 		const value = e.target.value;
@@ -24,7 +26,7 @@ const Pagination = ({ totalPage, urlGenerator }) => {
 	const pageSubmitHandler = (e) => {
 		e.preventDefault();
 		if (!error) {
-			setCurrent(inputValue);
+			setCurrent(parseInt(inputValue));
 			setIsEditable(!isEditable);
 		} else {
 			console.log('please solve the error first');
@@ -36,7 +38,7 @@ const Pagination = ({ totalPage, urlGenerator }) => {
 			<button
 				onClick={() => {
 					if (current > 1) {
-						return setCurrent((priv) => parseInt(priv) - 1);
+						return setCurrent(current - 1);
 					} else {
 						return;
 					}
@@ -88,7 +90,7 @@ const Pagination = ({ totalPage, urlGenerator }) => {
 			<button
 				onClick={() => {
 					if (current < totalPage) {
-						return setCurrent((priv) => parseInt(priv) + 1);
+						return setCurrent(current + 1);
 					} else {
 						return;
 					}

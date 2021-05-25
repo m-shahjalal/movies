@@ -1,5 +1,6 @@
 import { Formik } from 'formik';
 import { useHistory } from 'react-router-dom';
+import Zoom from 'react-reveal/Zoom';
 import axios from 'axios';
 import formImage from './form.png';
 import styles from './form.module.css';
@@ -8,9 +9,10 @@ import Modal from './Modal';
 
 const Submit = () => {
 	const history = useHistory();
-	const [progress, setProgress] = useState(null);
-	const [isOpen, setIsOpen] = useState(true);
+	const [progress, setProgress] = useState(0);
+	const [isOpen, setIsOpen] = useState(false);
 	const onSubmit = (values, action) => {
+		setIsOpen(true);
 		const data = new FormData();
 		data.append('name', values.name);
 		data.append('release', values.release);
@@ -21,7 +23,6 @@ const Submit = () => {
 			.post('https://movie-1010.herokuapp.com/form', data, {
 				onUploadProgress: (ProgressEvent) => {
 					action.resetForm(initialValues);
-					setIsOpen(true);
 					setProgress(
 						parseInt(
 							Math.round(
@@ -33,11 +34,12 @@ const Submit = () => {
 				},
 			})
 			.then((res) => {
-				console.log(res.data);
+				console.log('Data uploaded successfully');
 			})
 			.then((err) => {
-				history.push('/error');
-				console.log(err);
+				if (err?.message) {
+					return history.push('/error');
+				}
 			});
 	};
 	const initialValues = {
@@ -182,13 +184,13 @@ const Submit = () => {
 							</form>
 						)}
 					</Formik>
-					{progress && (
+					<Zoom>
 						<Modal
 							isOpen={isOpen}
 							progress={progress}
 							setIsOpen={setIsOpen}
 						/>
-					)}
+					</Zoom>
 				</div>
 				<div className={styles.right}>
 					<img
