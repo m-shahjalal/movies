@@ -4,7 +4,7 @@ import Single from './Single';
 import Spinner from './Spinner';
 import axios from 'axios';
 
-const Media = ({ url, setPagination, setTotalPage }) => {
+const Media = ({ url, setTotalPage }) => {
 	const [list, setList] = useState(null);
 
 	useEffect(() => {
@@ -19,11 +19,8 @@ const Media = ({ url, setPagination, setTotalPage }) => {
 			})
 			.catch((error) => {
 				console.error(error);
-				if (error.message) {
-					setPagination(false);
-				}
 			});
-	}, [url, setPagination, setTotalPage]);
+	}, [url, setTotalPage]);
 
 	return (
 		<>
