@@ -9,10 +9,14 @@ const Info = () => {
 	const [totalPage, setTotalPage] = useState(1);
 	const [list, setList] = useState(null);
 	const [loading, setLoading] = useState(false);
-	const [url, setUrl] = useState('/info?limit=10&page=1');
+	const [url, setUrl] = useState(
+		'https://movie-1010.herokuapp.com/info?limit=10&page=1'
+	);
 
 	const urlGenerator = (pageNumber) => {
-		const base = `/info?limit=10&page=${parseInt(pageNumber)}`;
+		const base = `https://movie-1010.herokuapp.com/info?limit=10&page=${parseInt(
+			pageNumber
+		)}`;
 		setUrl(base);
 		console.log(base);
 	};
@@ -34,7 +38,7 @@ const Info = () => {
 	return (
 		<div className={styles.info}>
 			<h1 className={styles.lead}>
-				{list ? 'Movies lists' : 'Sorry! There is no movie now'}
+				{list ? 'Movies lists' : 'Movie is loading...'}
 			</h1>
 			{list ? (
 				<div className={styles.box}>

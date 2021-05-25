@@ -43,10 +43,56 @@
 	@apply hidden md:flex m-0 rounded-r-md flex-1;
 }
 
+.modal {
+	@apply flex justify-center items-center;
+}
+
 .progress {
-	@apply w-full h-5 bg-gray-300 mt-5;
+	@apply w-full h-5 bg-gray-300 rounded-xl h-5;
 	line-height: 18px;
 }
 .bar {
-	@apply h-full bg-blue-500 text-center text-gray-900;
+	@apply h-full bg-blue-500 text-center text-gray-900 rounded-xl transition-all;
+}
+.modalLead {
+	@apply text-3xl text-center text-blue-500;
+}
+
+.redirect {
+	@apply flex w-full w-full justify-center items-center flex-wrap;
+}
+.directionsButton {
+	@apply m-3 shadow cursor-pointer rounded-2xl py-2 px-5 bg-blue-100 transition hover:bg-blue-500 text-gray-800 hover:text-white;
+}
+
+/* spinner */
+
+.spinnerContainer {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	width: 100%;
+	/* margin: auto; */
+	color: red;
+	height: 150px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.spinner {
+		width: 100px;
+		text-align: center;
+		animation: spinner-animation infinite 3s linear;
+		img {
+			width: 50px;
+		}
+	}
+}
+
+@keyframes spinner-animation {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }

@@ -1,14 +1,14 @@
 import { Formik } from 'formik';
-import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import formImage from './form.png';
 import styles from './form.module.css';
 import { useState } from 'react';
+import Modal from './Modal';
 
 const Submit = () => {
-	const history = useHistory();
 	const [progress, setProgress] = useState(null);
-	const onSubmit = (values) => {
+	const [isOpen, setIsOpen] = useState(true);
+	const onSubmit = (values, action) => {
 		const data = new FormData();
 		data.append('name', values.name);
 		data.append('release', values.release);
@@ -16,8 +16,10 @@ const Submit = () => {
 		data.append('thumb', values.thumb);
 		data.append('video', values.video);
 		axios
-			.post('/form', data, {
+			.post('https://movie-1010.herokuapp.com/form', data, {
 				onUploadProgress: (ProgressEvent) => {
+					action.resetForm(initialValues);
+					setIsOpen(true);
 					setProgress(
 						parseInt(
 							Math.round(
@@ -30,7 +32,6 @@ const Submit = () => {
 			})
 			.then((res) => {
 				console.log(res.data);
-				history.push('/info');
 			})
 			.then((err) => console.log(err));
 	};
@@ -177,13 +178,11 @@ const Submit = () => {
 						)}
 					</Formik>
 					{progress && (
-						<div className={styles.progress}>
-							<div
-								className={styles.bar}
-								style={{ width: `${progress}%` }}>
-								{progress}%
-							</div>
-						</div>
+						<Modal
+							isOpen={isOpen}
+							progress={progress}
+							setIsOpen={setIsOpen}
+						/>
 					)}
 				</div>
 				<div className={styles.right}>

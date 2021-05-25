@@ -12,9 +12,7 @@ middleware(app);
 app.use('/info', routes.info);
 app.use('/form', routes.form);
 app.get('*', (req, res) => {
-	res.sendFile(
-		path.resolve(__dirname, '../', 'client', 'build', 'index.html')
-	);
+	res.send(path.resolve(__dirname, '../', 'client', 'build', 'index.html'));
 });
 
 database(app);
