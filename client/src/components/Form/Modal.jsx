@@ -1,5 +1,5 @@
 import ReactModal from 'react-modal';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styles from './form.module.css';
 
 ReactModal.setAppElement('#root');
