@@ -34,9 +34,11 @@ const Submit = () => {
 			})
 			.then((res) => {
 				console.log(res.data);
-				history.push('/error');
 			})
-			.then((err) => console.log(err));
+			.then((err) => {
+				history.push('/error');
+				console.log(err);
+			});
 	};
 	const initialValues = {
 		name: '',
