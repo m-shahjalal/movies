@@ -1,4 +1,5 @@
 import { Formik } from 'formik';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import formImage from './form.png';
 import styles from './form.module.css';
@@ -6,6 +7,7 @@ import { useState } from 'react';
 import Modal from './Modal';
 
 const Submit = () => {
+	const history = useHistory();
 	const [progress, setProgress] = useState(null);
 	const [isOpen, setIsOpen] = useState(true);
 	const onSubmit = (values, action) => {
@@ -32,6 +34,7 @@ const Submit = () => {
 			})
 			.then((res) => {
 				console.log(res.data);
+				history.push('/error');
 			})
 			.then((err) => console.log(err));
 	};

@@ -3,6 +3,7 @@ import FormPage from './components/Form/Submit';
 import Home from './components/Home/Home';
 import Nav from './components/Nav/Nav';
 import Info from './components/Info/Info';
+import Error from './components/Error/Error';
 
 function App() {
 	return (
@@ -13,6 +14,7 @@ function App() {
 					<Route exact path='/' component={Home} />
 					<Route path='/form' component={FormPage} />
 					<Route path='/info' component={Info} />
+					<Route path='*' component={Error} />
 				</Switch>
 			</Router>
 		</div>

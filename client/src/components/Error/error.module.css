@@ -1,0 +1,4 @@
+.error {
+	@apply flex justify-center items-center text-gray-800 text-3xl m-7;
+	height: 84vh;
+}
